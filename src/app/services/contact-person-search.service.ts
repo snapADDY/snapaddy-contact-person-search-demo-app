@@ -80,8 +80,6 @@ export class ContactPersonSearchService {
       this.leads = [...xingLeads, ...linkedInLeads];
     }
 
-    console.info(this.leads);
-
     return this.leads;
   }
 
