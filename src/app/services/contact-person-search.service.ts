@@ -21,9 +21,6 @@ export class ContactPersonSearchService {
 
 
 
-  constructor() { console.info('INIT') }
-
-
   /**
    * Array of {@link Lead leads} found by the snapADDY contact person search.
    */
