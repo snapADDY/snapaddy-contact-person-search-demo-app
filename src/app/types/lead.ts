@@ -14,6 +14,10 @@ export interface Lead {
   country: string;
   email: string;
   fax: string;
+
+  /**
+   * -1 = unknown | 0 = Male | 1 = Female
+   */
   gender: -1 | 0 | 1;
   industry: string;
   meta: unknown;

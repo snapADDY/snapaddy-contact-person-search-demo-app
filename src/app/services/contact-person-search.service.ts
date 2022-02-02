@@ -15,9 +15,13 @@ export class ContactPersonSearchService {
     firstName: '',
     lastName: '',
     organization: 'snapADDY',
-    position: ''
-  }
+    position: '',
+    keywords: ''
+  };
 
+
+
+  constructor() { console.info('INIT') }
 
 
   /**
@@ -66,13 +70,11 @@ export class ContactPersonSearchService {
    * Search for leads in XING / LinkedIn using the given {@link LeadSearchOptions}.
    */
   public async search(options: LeadSearchOptions): Promise<typeof this["leads"]> {
-    const { firstName, lastName, organization, position } = options;
-
     if (window.snapADDY?.searchLeads) {
       this.isContactPersonSearchInProgress = true;
 
-      const xingPromise = window.snapADDY.searchLeads('xing', { firstName, lastName, organization, position });
-      const linkedinPromise = window.snapADDY.searchLeads('linkedin', { firstName, lastName, organization, position });
+      const xingPromise = window.snapADDY.searchLeads('xing', options);
+      const linkedinPromise = window.snapADDY.searchLeads('linkedin', options);
 
       const [xingLeads, linkedInLeads] = await Promise
         .all([xingPromise, linkedinPromise])
@@ -80,6 +82,8 @@ export class ContactPersonSearchService {
 
       this.leads = [...xingLeads, ...linkedInLeads];
     }
+
+    console.info(this.leads);
 
     return this.leads;
   }

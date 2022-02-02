@@ -25,7 +25,7 @@ export class LeadResultListComponent {
    */
   public get isLoading() {
     return this.contactPersonSearchService.isContactPersonSearchInProgress;
-  };
+  }
 
 
 

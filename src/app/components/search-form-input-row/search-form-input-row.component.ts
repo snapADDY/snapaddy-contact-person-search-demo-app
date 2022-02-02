@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ContactPersonSearchService } from '../../services/contact-person-search.service';
 
 @Component({
   selector: 'cps-search-form-input-row',
@@ -29,10 +30,16 @@ export class SearchFormInputRowComponent {
 
 
 
+  constructor(private contactPersonSearchService: ContactPersonSearchService) { }
+
+
+
   /**
-   * Emitted when the user presses "Enter" within the input field.
+   * Execute a contact person search
    */
-  @Output() public startSearch = new EventEmitter<void>();
+  public startSearch() {
+    this.contactPersonSearchService.search(this.contactPersonSearchService.searchModel);
+  }
 
 
 

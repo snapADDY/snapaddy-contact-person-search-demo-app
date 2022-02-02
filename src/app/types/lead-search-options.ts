@@ -11,4 +11,6 @@ export interface LeadSearchOptions {
 
   position: string;
 
+  keywords: string;
+
 }
