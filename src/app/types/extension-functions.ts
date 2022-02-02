@@ -9,7 +9,7 @@ import { LeadSearchOptions } from './lead-search-options';
  * You can call these functions like so:
  *
  * ```ts
- * let isConnectedToXING = false;
+ * let isConnectedToXing = false;
  * if(window.snapADDY?.isConnected) {
  *   isConnectedToXing = await window.snapADDY.isConnected('xing');
  * }

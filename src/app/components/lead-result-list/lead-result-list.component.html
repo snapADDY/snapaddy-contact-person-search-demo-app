@@ -1,5 +1,5 @@
 <h1 *ngIf="isLoading" class="text-slate-400 p-4 text-center">
-  Loading...
+  <fa-icon [icon]="faCircleNotch" [spin]="true"></fa-icon> Loading...
 </h1>
 
 <h1 *ngIf="!isLoading && !leads" class="text-slate-400 p-4 text-center">
@@ -10,9 +10,9 @@
   No Results
 </h1>
 
-<cps-lead
-  *ngFor="let lead of leads ?? []"
-  [lead]="lead"
-  (loadProfile)="loadProfile.emit(lead)"
-  class="mb-2">
-</cps-lead>
+<ng-container *ngIf="!isLoading">
+  <cps-lead
+    *ngFor="let lead of leads ?? []"
+    [lead]="lead">
+  </cps-lead>
+</ng-container>

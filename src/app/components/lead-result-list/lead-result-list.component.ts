@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Lead } from '../../types/index';
+import { Component } from '@angular/core';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { ContactPersonSearchService } from '../../services/contact-person-search.service';
+
+
 
 @Component({
   selector: 'cps-lead-result-list',
@@ -11,23 +14,31 @@ export class LeadResultListComponent {
 
 
   /**
+   * Public FontAwesome reference to use in the template.
+   */
+  public readonly faCircleNotch = faCircleNotch;
+
+
+
+  /**
    * Used to show the "Loading" placeholder
    */
-  @Input() public isLoading: boolean = false;
+  public get isLoading() {
+    return this.contactPersonSearchService.isContactPersonSearchInProgress;
+  };
 
 
 
   /**
    * List of {@link Lead leads} that should be displayed.
    */
-  @Input() public leads!: Array<Lead> | null;
+  public get leads() {
+    return this.contactPersonSearchService.leads;
+  }
 
 
 
-  /**
-   * Emitted when additional information for this lead should be loaded.
-   */
-  @Output() public readonly loadProfile = new EventEmitter<Lead>();
+  constructor(private contactPersonSearchService: ContactPersonSearchService) { }
 
 
 

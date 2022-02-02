@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { ContactPersonSearchService } from '../../services/contact-person-search.service';
 import { Lead } from '../../types/lead';
 
 @Component({
@@ -24,10 +25,16 @@ export class LeadComponent {
 
 
 
+  constructor(private contactPersonSearchService: ContactPersonSearchService) { }
+
+
+
   /**
-   * Emitted when additional information for this lead should be loaded.
+   * Load profile information for the current {@link Lead}.
    */
-  @Output() public readonly loadProfile = new EventEmitter<void>();
+  public loadProfile() {
+    this.contactPersonSearchService.loadProfileInformation(this.lead)
+  }
 
 
 

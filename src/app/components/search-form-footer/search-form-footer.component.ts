@@ -1,14 +1,15 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
-import { Lead } from '../../types/index';
+import { ContactPersonSearchService } from '../../services/contact-person-search.service';
+
+
 
 @Component({
   selector: 'cps-search-form-footer',
   templateUrl: './search-form-footer.component.html',
   styleUrls: ['./search-form-footer.component.scss']
 })
-export class SearchFormFooterComponent implements OnInit, OnChanges, OnDestroy {
+export class SearchFormFooterComponent {
 
 
 
@@ -25,7 +26,18 @@ export class SearchFormFooterComponent implements OnInit, OnChanges, OnDestroy {
    * - `true` = green
    * - `undefined` = grey
    */
-  @Input() public isConnectedToXING?: boolean = undefined;
+  public get isConnectedToXing() {
+    return this.contactPersonSearchService.isConnectedToXing;
+  }
+
+
+
+  /**
+   * @returns `true` if {@link checkXingConnection} is currently in progress
+   */
+  public get isXingConnectionCheckInProgress() {
+    return this.contactPersonSearchService.isXingConnectionCheckInProgress;
+  }
 
 
 
@@ -35,70 +47,81 @@ export class SearchFormFooterComponent implements OnInit, OnChanges, OnDestroy {
    * - `true` = green
    * - `undefined` = grey
    */
-  @Input() public isConnectedToLinkedIn?: boolean = undefined;
+  public get isConnectedToLinkedIn() {
+    return this.contactPersonSearchService.isConnectedToLinkedIn;
+  }
+
+
+
+  /**
+   * @returns `true` if {@link checkLinkedInConnection} is currently in progress
+   */
+  public get isLinkedInConnectionCheckInProgress() {
+    return this.contactPersonSearchService.isLinkedInConnectionCheckInProgress;
+  }
 
 
 
   /**
    * List of found leads. Used to en/disable the "clear results" button.
    */
-  @Input() public leads?: Array<Lead> | null = null;
-
-
-
-  /**
-   * Emitted when we should check if the user is logged in to the given social network.
-   */
-  @Output() public readonly checkConnection = new EventEmitter<'xing' | 'linkedin'>();
-
-
-
-  /**
-   * Emitted when the contact person search should start.
-   */
-  @Output() public readonly startSearch = new EventEmitter<void>();
-
-
-
-  /**
-   * Emitted when the list of leads should be cleared.
-   */
-  @Output() public readonly clearResults = new EventEmitter<void>();
+  public get leads() {
+    return this.contactPersonSearchService.leads;
+  }
 
 
 
   /**
    * Shows a spinner within the "Search" button when this is true.
    */
-  public isLoading: boolean = false;
+  public get isSearchInProgress() {
+    return this.contactPersonSearchService.isContactPersonSearchInProgress;
+  }
+
+
+
+  constructor(private contactPersonSearchService: ContactPersonSearchService) { }
 
 
 
   /**
-   * Reference to the {@link startSearch} event subscription.
-   * Used to update the {@link isLoading} property.
+   * Clear leads array.
+   * @see {@link ContactPersonSearchService.clearResults}
    */
-  private loadingSubscription?: Subscription;
-
-
-
-  public ngOnInit(): void {
-    // Start loading (show spinner) when startSearch was called
-    this.loadingSubscription = this.startSearch.subscribe(() => this.isLoading = true);
+  public clearResults() {
+    this.contactPersonSearchService.clearResults();
   }
 
 
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['leads']) {
-      this.isLoading = false;
-    }
+  /**
+   * Check if user is connected to XING.
+   * @see {@link ContactPersonSearchService.checkXingConnection}
+   * @returns `true` if he is, `false` otherwise
+   */
+  public checkXingConnection() {
+    return this.contactPersonSearchService.checkXingConnection();
   }
 
 
 
-  public ngOnDestroy(): void {
-    this.loadingSubscription?.unsubscribe();
+  /**
+   * Check if user is connected to LinkedIn.
+   * @see {@link ContactPersonSearchService.checkLinkedInConnection}
+   * @returns `true` if he is, `false` otherwise
+   */
+  public checkLinkedInConnection() {
+    return this.contactPersonSearchService.checkLinkedInConnection();
+  }
+
+
+
+  /**
+   * Start a contact person search.
+   * @see {@link ContactPersonSearchService.search}
+   */
+  public startSearch() {
+    this.contactPersonSearchService.search(this.contactPersonSearchService.searchModel)
   }
 
 

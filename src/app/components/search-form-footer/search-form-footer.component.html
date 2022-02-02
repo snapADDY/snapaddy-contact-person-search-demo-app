@@ -1,29 +1,31 @@
 <cps-check-connection-button
   label="Check XING"
-  [isConnected]="isConnectedToXING"
-  (checkConnection)="checkConnection.emit('xing')">
+  [isConnected]="isConnectedToXing"
+  [isLoading]="isXingConnectionCheckInProgress"
+  (checkConnection)="checkXingConnection()">
 </cps-check-connection-button>
 
 <cps-check-connection-button
   label="Check LinkedIn"
   [isConnected]="isConnectedToLinkedIn"
-  (checkConnection)="checkConnection.emit('linkedin')">
+  [isLoading]="isLinkedInConnectionCheckInProgress"
+  (checkConnection)="checkLinkedInConnection()">
 </cps-check-connection-button>
 
 <div class="grow"></div>
 
 <button
   [disabled]="(!leads || leads.length === 0)"
-  (click)="clearResults.emit()"
+  (click)="clearResults()"
   class="bg-slate-300 text-slate-600 rounded px-5 py-1 mr-2 disabled:opacity-50">
   clear Results
 </button>
 
 <button
-  (click)="startSearch.emit()"
+  (click)="startSearch()"
   class="bg-emerald-600 text-white rounded px-5 py-1 w-36">
-  <span *ngIf="!isLoading">Search</span>
-  <span *ngIf="isLoading">
+  <span *ngIf="!isSearchInProgress">Search</span>
+  <span *ngIf="isSearchInProgress">
     <fa-icon
       [icon]="faCircleNotch"
       [spin]="true">

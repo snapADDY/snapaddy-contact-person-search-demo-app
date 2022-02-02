@@ -14,24 +14,16 @@
   <cps-search-form-input-row
     label="Organization"
     [(value)]="searchModel.organization"
-    (startSearch)="startSearch.emit(searchModel)"
     class="flex flex-row mb-2">
   </cps-search-form-input-row>
 
   <cps-search-form-input-row
     label="Position"
     [(value)]="searchModel.position"
-    (startSearch)="startSearch.emit(searchModel)"
     class="flex flex-row mb-6">
   </cps-search-form-input-row>
 
-  <cps-search-form-footer
-    [isConnectedToLinkedIn]="isConnectedToLinkedIn"
-    [isConnectedToXING]="isConnectedToXING"
-    [leads]="leads"
-    (checkConnection)="checkConnection.emit($event)"
-    (clearResults)="clearResults.emit()"
-    (startSearch)="startSearch.emit(searchModel)">
+  <cps-search-form-footer>
   </cps-search-form-footer>
 
 </div>

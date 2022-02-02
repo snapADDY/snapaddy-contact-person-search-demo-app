@@ -3,23 +3,15 @@
   <div class="w-[50rem] mx-auto">
 
     <h1 class="text-slate-800 text-3xl p-2 my-6 text-center">
-      Contact person search Demo Application
+      Contact Person Search Demo Application
     </h1>
 
     <cps-search-form
-      [leads]="leads"
-      [isConnectedToLinkedIn]="isConnectedToLinkedIn"
-      [isConnectedToXING]="isConnectedToXING"
-      (checkConnection)="checkConnection($event)"
-      (clearResults)="leads = null"
-      (startSearch)="search($event)"
       class="bg-white rounded border shadow-md mb-4">
     </cps-search-form>
 
     <cps-lead-result-list
-      [leads]="leads"
-      (loadProfile)="loadProfileInformation($event)"
-      class="bg-white rounded border shadow-md">
+      class="bg-white rounded border shadow-md mb-4">
     </cps-lead-result-list>
 
   </div>
