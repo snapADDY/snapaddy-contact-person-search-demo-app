@@ -1,0 +1,42 @@
+<div class="p-4 border-b flex flex-row">
+
+  <img
+    *ngIf="lead.image"
+    [src]="lead.image"
+    class="w-20 h-20 mr-4 shadow-md border rounded-full">
+
+  <div
+    *ngIf="!lead.image"
+    class="w-20 h-20 mr-4 shadow-md border rounded-full flex items-center justify-center text-3xl text-slate-300">
+    <fa-icon [icon]="faUser"></fa-icon>
+  </div>
+
+  <div
+    class="flex flex-col justify-center grow">
+    <strong class="text-underline">{{ lead.firstName }} {{ lead.lastName }}</strong>
+    <span>{{ lead.organization }}</span>
+    <span>{{ lead.position }}</span>
+  </div>
+
+  <div *ngIf="lead.linkedin || lead.xing" class="flex flex-col flex-nowrap justify-center">
+
+    <a
+      class="text-slate-400 hover:text-slate-700 whitespace-nowrap"
+      [href]="lead.linkedin || lead.xing"
+      target="_blank">
+      Open in
+      <span *ngIf="lead.xing">XING</span>
+      <span *ngIf="lead.linkedin">LinkedIn</span>
+    </a>
+
+    <hr *ngIf="lead.linkedin" class="my-2">
+
+    <button
+      *ngIf="lead.linkedin"
+      (click)="loadProfile.emit()"
+      class="text-slate-400 hover:text-slate-700 whitespace-nowrap">
+      Load profile information
+    </button>
+
+  </div>
+</div>

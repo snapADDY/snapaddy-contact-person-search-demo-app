@@ -1,0 +1,32 @@
+<cps-check-connection-button
+  label="Check XING"
+  [isConnected]="isConnectedToXING"
+  (checkConnection)="checkConnection.emit('xing')">
+</cps-check-connection-button>
+
+<cps-check-connection-button
+  label="Check LinkedIn"
+  [isConnected]="isConnectedToLinkedIn"
+  (checkConnection)="checkConnection.emit('linkedin')">
+</cps-check-connection-button>
+
+<div class="grow"></div>
+
+<button
+  [disabled]="(!leads || leads.length === 0)"
+  (click)="clearResults.emit()"
+  class="bg-slate-300 text-slate-600 rounded px-5 py-1 mr-2 disabled:opacity-50">
+  clear Results
+</button>
+
+<button
+  (click)="startSearch.emit()"
+  class="bg-emerald-600 text-white rounded px-5 py-1 w-36">
+  <span *ngIf="!isLoading">Search</span>
+  <span *ngIf="isLoading">
+    <fa-icon
+      [icon]="faCircleNotch"
+      [spin]="true">
+    </fa-icon>
+  </span>
+</button>

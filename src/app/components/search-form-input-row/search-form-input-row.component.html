@@ -1,0 +1,6 @@
+<label class="w-32">{{ label }}</label>
+<input
+  class="flex-grow border rounded px-2"
+  [value]="value"
+  (input)="valueChange.emit(value)"
+  (keydown.enter)="startSearch.emit()">

@@ -1,0 +1,19 @@
+<button
+  [class.text-white]="isConnected !== undefined"
+  [class.bg-red-400]="isConnected === false"
+  [class.bg-emerald-600]="isConnected === true"
+  [class.bg-slate-300]="isConnected === undefined"
+  [class.text-slate-700]="isConnected === undefined"
+  (click)="checkConnection.emit()"
+  class="rounded px-5 py-1 mr-2 w-40">
+
+  <span *ngIf="isLoading">
+    <fa-icon
+      [icon]="faCircleNotch"
+      [spin]="true">
+    </fa-icon>
+  </span>
+
+  <span *ngIf="!isLoading">{{ label }}</span>
+
+</button>
