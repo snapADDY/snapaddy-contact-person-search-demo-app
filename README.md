@@ -1,27 +1,21 @@
-# Contact person search demo application
+# Contact Person Search Demo Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.0.
+This is a Demo application for the snapADDY contact person search browser extension.
 
-## Development server
+## Starting / Development
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Prerequisites:
+- Install `NodeJS >=14` and make sure `npm` is available in your PATH.
+- Install the contact person search extension in your browser. (Only Chrome / Edge-chromium are supported right now.)
 
-## Code scaffolding
+### Starting the Application:
+This application is built using `@angular/cli@^13`. So in order to run / develop this app, you just need to do the following steps:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```sh
+  cd ./snapaddy-contact-person-search-demo-app
+  npm ci
+  npm start
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This will install all necessary dependencies and start a local dev server.
+Open `http://localhost:4200` in Chrome/Edge-chromium. And you're good to go.
