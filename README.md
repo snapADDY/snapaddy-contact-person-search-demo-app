@@ -19,3 +19,7 @@ This application is built using `@angular/cli@^13`. So in order to run / develop
 
 This will install all necessary dependencies and start a local dev server.
 Open `http://localhost:4200` in Chrome/Edge-chromium. And you're good to go.
+
+## Important / relevant files
+- Check `src\app\types\extension-functions.ts` for function references appended to the `window` object by the contact person search browser extension
+- Check `src\app\services\contact-person-search.service.ts` for an example service implementation that uses the provided extension functions
