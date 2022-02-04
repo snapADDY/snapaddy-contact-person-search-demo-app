@@ -31,7 +31,7 @@ export class ContactPersonSearchService {
   /**
    * `true` while the contact person search is in progress.
    */
-  public isContactPersonSearchInProgress = false;
+  public isContactPersonSearchInProgress: boolean = false;
 
 
 
@@ -45,7 +45,7 @@ export class ContactPersonSearchService {
   /**
    * `true` while the connection check for XING is in progress.
    */
-  public isXingConnectionCheckInProgress = false;
+  public isXingConnectionCheckInProgress: boolean = false;
 
 
 
@@ -59,7 +59,7 @@ export class ContactPersonSearchService {
   /**
    * `true` while the connection check for LinkedIn is in progress.
    */
-  public isLinkedInConnectionCheckInProgress = false;
+  public isLinkedInConnectionCheckInProgress: boolean = false;
 
 
 
@@ -97,7 +97,7 @@ export class ContactPersonSearchService {
   /**
    * Check if the user is connected to LinkedIn.
    */
-  public async checkLinkedInConnection() {
+  public async checkLinkedInConnection(): Promise<boolean> {
     this.isLinkedInConnectionCheckInProgress = true;
     if (window.snapADDY?.isConnected) {
       this.isConnectedToLinkedIn = await window.snapADDY.isConnected('linkedin');
@@ -111,7 +111,7 @@ export class ContactPersonSearchService {
   /**
    * Check if the user is connected to XING.
    */
-  public async checkXingConnection() {
+  public async checkXingConnection(): Promise<boolean> {
     this.isXingConnectionCheckInProgress = true;
     if (window.snapADDY?.isConnected) {
       this.isConnectedToXing = await window.snapADDY.isConnected('xing');

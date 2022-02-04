@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { ContactPersonSearchService } from '../../services/contact-person-search.service';
+import { Lead } from '../../types/lead';
 
 
 
@@ -26,7 +27,7 @@ export class SearchFormFooterComponent {
    * - `true` = green
    * - `undefined` = grey
    */
-  public get isConnectedToXing() {
+  public get isConnectedToXing(): boolean | undefined {
     return this.contactPersonSearchService.isConnectedToXing;
   }
 
@@ -35,7 +36,7 @@ export class SearchFormFooterComponent {
   /**
    * @returns `true` if {@link checkXingConnection} is currently in progress
    */
-  public get isXingConnectionCheckInProgress() {
+  public get isXingConnectionCheckInProgress(): boolean {
     return this.contactPersonSearchService.isXingConnectionCheckInProgress;
   }
 
@@ -47,7 +48,7 @@ export class SearchFormFooterComponent {
    * - `true` = green
    * - `undefined` = grey
    */
-  public get isConnectedToLinkedIn() {
+  public get isConnectedToLinkedIn(): boolean | undefined {
     return this.contactPersonSearchService.isConnectedToLinkedIn;
   }
 
@@ -56,7 +57,7 @@ export class SearchFormFooterComponent {
   /**
    * @returns `true` if {@link checkLinkedInConnection} is currently in progress
    */
-  public get isLinkedInConnectionCheckInProgress() {
+  public get isLinkedInConnectionCheckInProgress(): boolean {
     return this.contactPersonSearchService.isLinkedInConnectionCheckInProgress;
   }
 
@@ -65,7 +66,7 @@ export class SearchFormFooterComponent {
   /**
    * List of found leads. Used to en/disable the "clear results" button.
    */
-  public get leads() {
+  public get leads(): Array<Lead> | null {
     return this.contactPersonSearchService.leads;
   }
 
@@ -74,7 +75,7 @@ export class SearchFormFooterComponent {
   /**
    * Shows a spinner within the "Search" button when this is true.
    */
-  public get isSearchInProgress() {
+  public get isSearchInProgress(): boolean {
     return this.contactPersonSearchService.isContactPersonSearchInProgress;
   }
 
@@ -88,7 +89,7 @@ export class SearchFormFooterComponent {
    * Clear leads array.
    * @see {@link ContactPersonSearchService.clearResults}
    */
-  public clearResults() {
+  public clearResults(): void {
     this.contactPersonSearchService.clearResults();
   }
 
@@ -99,7 +100,7 @@ export class SearchFormFooterComponent {
    * @see {@link ContactPersonSearchService.checkXingConnection}
    * @returns `true` if he is, `false` otherwise
    */
-  public checkXingConnection() {
+  public checkXingConnection(): Promise<boolean> {
     return this.contactPersonSearchService.checkXingConnection();
   }
 
@@ -110,7 +111,7 @@ export class SearchFormFooterComponent {
    * @see {@link ContactPersonSearchService.checkLinkedInConnection}
    * @returns `true` if he is, `false` otherwise
    */
-  public checkLinkedInConnection() {
+  public checkLinkedInConnection(): Promise<boolean> {
     return this.contactPersonSearchService.checkLinkedInConnection();
   }
 

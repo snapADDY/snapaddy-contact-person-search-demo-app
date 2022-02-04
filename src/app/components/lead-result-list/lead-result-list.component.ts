@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { ContactPersonSearchService } from '../../services/contact-person-search.service';
+import { Lead } from '../../types/lead';
 
 
 
@@ -23,7 +24,7 @@ export class LeadResultListComponent {
   /**
    * Used to show the "Loading" placeholder
    */
-  public get isLoading() {
+  public get isLoading(): boolean {
     return this.contactPersonSearchService.isContactPersonSearchInProgress;
   }
 
@@ -32,7 +33,7 @@ export class LeadResultListComponent {
   /**
    * List of {@link Lead leads} that should be displayed.
    */
-  public get leads() {
+  public get leads(): Array<Lead> | null {
     return this.contactPersonSearchService.leads;
   }
 

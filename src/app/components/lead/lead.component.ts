@@ -32,7 +32,7 @@ export class LeadComponent {
   /**
    * Load profile information for the current {@link Lead}.
    */
-  public loadProfile() {
+  public loadProfile(): void {
     this.contactPersonSearchService.loadProfileInformation(this.lead)
   }
 

@@ -37,7 +37,7 @@ export class SearchFormInputRowComponent {
   /**
    * Execute a contact person search
    */
-  public startSearch() {
+  public startSearch(): void {
     this.contactPersonSearchService.search(this.contactPersonSearchService.searchModel);
   }
 
